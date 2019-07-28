@@ -15,9 +15,9 @@ public class FlightManagerTest {
 
 
     @Before
-    public void before() {
+    public void before() throws Exception {
         plane1 = new Plane(PlaneType.FIXEDWING);
-        flight1 = new Flight(plane1, "BA999", AirportType.CDG, AirportType.EDI, "09:00");
+        flight1 = new Flight(plane1, "BA999", AirportType.CDG, AirportType.EDI, "09:15 25-07-2019");
         passenger1 = new Passenger("Bob", 1);
         passenger2 = new Passenger("Mary", 0);
         passenger3 = new Passenger("Stu", 2);

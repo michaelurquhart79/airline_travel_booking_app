@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class FlightTest {
@@ -9,12 +12,13 @@ public class FlightTest {
     private Passenger passenger1;
     private Passenger passenger2;
     private Passenger passenger3;
+    private Date dateTest;
 
 
     @Before
-    public void before() {
+    public void before() throws Exception {
         plane1 = new Plane(PlaneType.FIXEDWING);
-        flight1 = new Flight(plane1, "BA999", AirportType.CDG, AirportType.EDI, "09:00");
+        flight1 = new Flight(plane1, "BA999", AirportType.CDG, AirportType.EDI, "09:15 25-07-2019");
         passenger1 = new Passenger("Bob", 1);
         passenger2 = new Passenger("Mary", 0);
         passenger3 = new Passenger("Stu", 2);
@@ -27,7 +31,7 @@ public class FlightTest {
 
     @Test
     public void flightHasDepartureTime() {
-        assertEquals("09:00", flight1.getDepartureTime());
+        assertEquals("09:15 25-07-2019", flight1.getDepartureTime());
     }
 
     @Test
@@ -77,5 +81,17 @@ public class FlightTest {
         flight1.bookPassenger(passenger1);
         flight1.bookPassenger(passenger2);
         assertEquals(2, flight1.getPassengers().size());
+    }
+
+    @Test
+    public void messingAboutWithDates() throws Exception {
+//the internet told me to add throws Exception but I don't really understand this
+        String pattern = "HH:mm dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        Date date = simpleDateFormat.parse("09:15 25-07-2019");
+        String dateToString = simpleDateFormat.format(date);
+        assertEquals("09:15 25-07-2019", dateToString);
+        System.out.println(dateToString);
     }
 }

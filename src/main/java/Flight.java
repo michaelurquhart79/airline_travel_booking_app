@@ -1,4 +1,6 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Flight {
     private ArrayList<Passenger> passengers;
@@ -6,15 +8,22 @@ public class Flight {
     private String flightNumber;
     private AirportType destination;
     private AirportType departureAirport;
-    private String departureTime;
+    private Date departureTime;
 
-    public Flight(Plane plane, String flightNumber, AirportType destination, AirportType departureAirport, String departureTime) {
+    public Flight (Plane plane, String flightNumber, AirportType destination, AirportType departureAirport, String departureTime) throws Exception {
         this.passengers = new ArrayList<Passenger>();
         this.plane = plane;
         this.flightNumber = flightNumber;
         this.destination = destination;
         this.departureAirport = departureAirport;
-        this.departureTime = departureTime;
+
+        String pattern = "HH:mm dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        this.departureTime = simpleDateFormat.parse(departureTime);
+
+
+//        this.departureTime = departureTime;
     }
 
     public String getFlightNumber() {
@@ -22,7 +31,10 @@ public class Flight {
     }
 
     public String getDepartureTime() {
-        return this.departureTime;
+        String pattern = "HH:mm dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(this.departureTime);
+//        return this.departureTime;
     }
 
     public Plane getPlane() {
