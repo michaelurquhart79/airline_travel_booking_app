@@ -51,4 +51,16 @@ public class Flight {
             this.passengers.add(passenger);
         }
     }
+
+    public double getTotalWeightFromPlane(){
+        return this.plane.getTotalWeightFromEnum();
+    }
+
+    public int getCapacity() {
+        return this.plane.getCapacityFromEnum();
+    }
+
+    public ArrayList<Passenger> getPassengers() {
+        return new ArrayList<Passenger>(this.passengers);
+    }
 }

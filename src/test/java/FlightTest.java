@@ -61,4 +61,21 @@ public class FlightTest {
         assertEquals(1, flight1.numberBooked());
         assertEquals(1, flight1.numberOfAvailableSeats());
     }
+
+    @Test
+    public void canGetTotalWeightOfPlane() {
+        assertEquals(200.0, flight1.getTotalWeightFromPlane(), 0.01);
+    }
+
+    @Test
+    public void canGetCapacityOfPlane() {
+        assertEquals(2, flight1.getCapacity());
+    }
+
+    @Test
+    public void canGetPassengersArrayList() {
+        flight1.bookPassenger(passenger1);
+        flight1.bookPassenger(passenger2);
+        assertEquals(2, flight1.getPassengers().size());
+    }
 }
